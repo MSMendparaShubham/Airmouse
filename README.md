@@ -27,10 +27,9 @@ Unlike camera-based systems (OpenCV/MediaPipe), AirMouse provides **zero-latency
 | **GND** | GND | Common Ground |
 | **SDA** | GPIO 21 | I2C Data |
 | **SCL** | GPIO 22 | I2C Clock |
+| **INT** | - | N/C (Optional) |
 
-*The Click Buttons should be connected as follows:*
-- **Left Click**: GPIO 25 to GND
-- **Right Click**: GPIO 26 to GND
+*The Click Button should be connected between **GPIO 0 (Boot Button)** and **GND**.*
 
 ## 💻 Software Setup
 

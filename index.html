@@ -265,15 +265,10 @@
                                     <td class="pin-name esp-pin">GPIO 22</td>
                                     <td class="pin-note">I2C Clock</td>
                                 </tr>
-                                <tr class="wire-row" data-wire="lbtn">
-                                    <td class="pin-name mpu-pin">-</td>
-                                    <td class="pin-name esp-pin">GPIO 25</td>
-                                    <td class="pin-note">Left Click</td>
-                                </tr>
-                                <tr class="wire-row" data-wire="rbtn">
-                                    <td class="pin-name mpu-pin">-</td>
-                                    <td class="pin-name esp-pin">GPIO 26</td>
-                                    <td class="pin-note">Right Click</td>
+                                <tr class="wire-row dim">
+                                    <td class="pin-name mpu-pin">INT</td>
+                                    <td class="pin-name esp-pin">N/C</td>
+                                    <td class="pin-note">(Optional)</td>
                                 </tr>
                                 <tr class="wire-row dim">
                                     <td class="pin-name mpu-pin">XDA/XCL</td>
@@ -286,7 +281,7 @@
 
                     <!-- Self-contained SVG Diagram -->
                     <div class="diagram-wrap">
-                        <svg id="wiring-svg" viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="wiring-svg" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <!-- Glow filters for each wire -->
                                 <filter id="glow-vcc">
@@ -377,7 +372,7 @@
                                 stroke="#8b5cf6" stroke-width="3.5" fill="none" stroke-linecap="round" />
 
                             <!-- ── ESP32 Board ── -->
-                            <rect x="420" y="60" width="120" height="260" rx="10" ry="10" fill="#1e293b"
+                            <rect x="420" y="60" width="120" height="220" rx="10" ry="10" fill="#1e293b"
                                 filter="url(#board-shadow)" />
                             <rect x="420" y="60" width="120" height="8" rx="5" fill="#1d4ed8" />
                             <!-- Chip -->
@@ -424,18 +419,14 @@
                                 fill="#94a3b8">GPIO26</text>
 
                             <!-- Wire legend -->
-                            <circle cx="180" cy="360" r="5" fill="#ef4444" />
-                            <text x="190" y="364" font-family="monospace" font-size="10" fill="#64748b">VCC</text>
-                            <circle cx="230" cy="360" r="5" fill="#475569" />
-                            <text x="240" y="364" font-family="monospace" font-size="10" fill="#64748b">GND</text>
-                            <circle cx="280" cy="360" r="5" fill="#3b82f6" />
-                            <text x="290" y="364" font-family="monospace" font-size="10" fill="#64748b">SDA</text>
-                            <circle cx="330" cy="360" r="5" fill="#8b5cf6" />
-                            <text x="340" y="364" font-family="monospace" font-size="10" fill="#64748b">SCL</text>
-                            <circle cx="380" cy="360" r="5" fill="#f59e0b" />
-                            <text x="390" y="364" font-family="monospace" font-size="10" fill="#64748b">L-BTN</text>
-                            <circle cx="440" cy="360" r="5" fill="#10b981" />
-                            <text x="450" y="364" font-family="monospace" font-size="10" fill="#64748b">R-BTN</text>
+                            <circle cx="180" cy="310" r="5" fill="#ef4444" />
+                            <text x="190" y="314" font-family="monospace" font-size="10" fill="#64748b">VCC</text>
+                            <circle cx="230" cy="310" r="5" fill="#475569" />
+                            <text x="240" y="314" font-family="monospace" font-size="10" fill="#64748b">GND</text>
+                            <circle cx="280" cy="310" r="5" fill="#3b82f6" />
+                            <text x="290" y="314" font-family="monospace" font-size="10" fill="#64748b">SDA</text>
+                            <circle cx="330" cy="310" r="5" fill="#8b5cf6" />
+                            <text x="340" y="314" font-family="monospace" font-size="10" fill="#64748b">SCL</text>
                         </svg>
                     </div>
                 </div>

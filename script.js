@@ -104,8 +104,6 @@ const wirePinMap = {
     gnd: ['dot-mpu-gnd', 'dot-esp-gnd'],
     sda: ['dot-mpu-sda', 'dot-esp-sda'],
     scl: ['dot-mpu-scl', 'dot-esp-scl'],
-    lbtn: ['dot-esp-lbtn'],
-    rbtn: ['dot-esp-rbtn'],
 };
 
 function clearHighlights() {
