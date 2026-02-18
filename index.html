@@ -265,10 +265,15 @@
                                     <td class="pin-name esp-pin">GPIO 22</td>
                                     <td class="pin-note">I2C Clock</td>
                                 </tr>
-                                <tr class="wire-row dim">
-                                    <td class="pin-name mpu-pin">INT</td>
-                                    <td class="pin-name esp-pin">N/C</td>
-                                    <td class="pin-note">(Optional)</td>
+                                <tr class="wire-row" data-wire="lbtn">
+                                    <td class="pin-name mpu-pin">-</td>
+                                    <td class="pin-name esp-pin">GPIO 25</td>
+                                    <td class="pin-note">Left Click</td>
+                                </tr>
+                                <tr class="wire-row" data-wire="rbtn">
+                                    <td class="pin-name mpu-pin">-</td>
+                                    <td class="pin-name esp-pin">GPIO 26</td>
+                                    <td class="pin-note">Right Click</td>
                                 </tr>
                                 <tr class="wire-row dim">
                                     <td class="pin-name mpu-pin">XDA/XCL</td>
@@ -407,6 +412,16 @@
                                 stroke-width="2" />
                             <text x="432" y="237" text-anchor="start" font-family="monospace" font-size="10"
                                 fill="#94a3b8">GPIO22</text>
+                            <!-- GPIO25 y=280 -->
+                            <circle id="dot-esp-lbtn" cx="420" cy="280" r="7" fill="#f59e0b" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="432" y="277" text-anchor="start" font-family="monospace" font-size="10"
+                                fill="#94a3b8">GPIO25</text>
+                            <!-- GPIO26 y=300 -->
+                            <circle id="dot-esp-rbtn" cx="420" cy="300" r="7" fill="#10b981" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="432" y="297" text-anchor="start" font-family="monospace" font-size="10"
+                                fill="#94a3b8">GPIO26</text>
 
                             <!-- Wire legend -->
                             <circle cx="180" cy="310" r="5" fill="#ef4444" />
@@ -450,54 +465,63 @@
                         </div>
                     </div>
                     <div class="code-container">
-                        <pre><code class="language-arduino">/*
-  AirMouse | ESP32 + MPU6050 Motion Control
-  A professional implementation for Bluetooth HID mouse control.
-*/
+                        <pre><code class="language-arduino">#include &lt;Wire.h&gt;
+#include &lt;Adafruit_MPU6050.h&gt;
+#include &lt;Adafruit_Sensor.h&gt;
+#include &lt;BleMouse.h&gt;
 
-#include <BleMouse.h>
-#include <Adafruit_MPU6050.h>
-#include <Adafruit_Sensor.h>
-#include <Wire.h>
-
-BleMouse bleMouse("AirMouse", "MS-Media", 100);
 Adafruit_MPU6050 mpu;
+BleMouse bleMouse("ESP32 Air Mouse", "GSN Creation", 100);
 
-const int clickPin = 0;
-const float sensitivity = 15.0;
-const float deadzone = 0.05;
+const int leftButtonPin  = 25;  
+const int rightButtonPin = 26;
 
 void setup() {
   Serial.begin(115200);
+
+  pinMode(leftButtonPin, INPUT_PULLUP);
+  pinMode(rightButtonPin, INPUT_PULLUP);
+
+  Wire.begin();
   if (!mpu.begin()) {
-    while (1) delay(10);
+    Serial.println("MPU6050 not found!");
+    while (1);
   }
-  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
-  mpu.setGyroRange(MPU6050_RANGE_500_DEG);
-  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
-  pinMode(clickPin, INPUT_PULLUP);
+
   bleMouse.begin();
+
+  // Configure sensitivity
+  mpu.setAccelerometerRange(MPU6050_RANGE_4_G);
+  mpu.setGyroRange(MPU6050_RANGE_500_DEG);
 }
 
 void loop() {
+  sensors_event_t a, g, temp;
+  mpu.getEvent(&a, &g, &temp);
+
   if (bleMouse.isConnected()) {
-    sensors_event_t a, g, temp;
-    mpu.getEvent(&a, &g, &temp);
+    // Gyro values give smooth pointer control
+    int moveX = g.gyro.x * 8;   // adjust 8 → sensitivity
+    int moveY = g.gyro.y * -8;
 
-    float gx = g.gyro.z;
-    float gy = g.gyro.y;
+    bleMouse.move(moveX, moveY);
 
-    if (abs(gx) > deadzone || abs(gy) > deadzone) {
-      bleMouse.move((int)(gx * sensitivity), (int)(gy * sensitivity));
+    // Left click
+    if (!digitalRead(leftButtonPin)) {
+      bleMouse.press(MOUSE_LEFT);
+    } else {
+      bleMouse.release(MOUSE_LEFT);
     }
 
-    if (digitalRead(clickPin) == LOW) {
-      if (!bleMouse.isPressed(MOUSE_LEFT)) bleMouse.press(MOUSE_LEFT);
+    // Right click
+    if (!digitalRead(rightButtonPin)) {
+      bleMouse.press(MOUSE_RIGHT);
     } else {
-      if (bleMouse.isPressed(MOUSE_LEFT)) bleMouse.release(MOUSE_LEFT);
+      bleMouse.release(MOUSE_RIGHT);
     }
   }
-  delay(10);
+
+  delay(10);  // Small delay to stabilize motion
 }</code></pre>
                     </div>
                 </div>
