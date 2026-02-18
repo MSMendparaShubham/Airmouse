@@ -1259,3 +1259,126 @@ footer {
         height: 96px;
     }
 }
+
+/* --- Source Code Section --- */
+.code-editor-wrap {
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    border: 1px solid #333;
+    margin-top: 2rem;
+}
+
+.code-editor-header {
+    background: #252526;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+}
+
+.editor-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.editor-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.editor-dots span:nth-child(1) {
+    background: #ff5f56;
+}
+
+.editor-dots span:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.editor-dots span:nth-child(3) {
+    background: #27c93f;
+}
+
+.editor-title {
+    color: #94a3b8;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.editor-btn {
+    background: #333;
+    border: none;
+    color: #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.editor-btn:hover {
+    background: #444;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.editor-btn i {
+    width: 14px;
+    height: 14px;
+}
+
+.code-container {
+    padding: 10px 0;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.code-container pre {
+    margin: 0 !important;
+    padding: 15px 25px !important;
+    background: transparent !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Custom Scrollbar for Code */
+.code-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.code-container::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.code-container::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+}
+
+.code-container::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+@media (max-width: 768px) {
+    .editor-btn span {
+        display: none;
+    }
+
+    .code-container pre {
+        padding: 15px !important;
+    }
+}

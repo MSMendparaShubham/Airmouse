@@ -146,5 +146,32 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// 8. Copy Code to Clipboard
+const copyBtn = document.getElementById('copy-code-btn');
+if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+        const codeElement = document.querySelector('#source-code code');
+        const textToCopy = codeElement.innerText;
 
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Visual feedback
+            const btnText = copyBtn.querySelector('span');
+            const btnIcon = copyBtn.querySelector('i');
+            const originalText = btnText.innerText;
 
+            btnText.innerText = 'Copied!';
+
+            // Temporary success color
+            copyBtn.style.background = '#27c93f';
+            copyBtn.style.color = '#fff';
+
+            setTimeout(() => {
+                btnText.innerText = originalText;
+                copyBtn.style.background = '';
+                copyBtn.style.color = '';
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy code:', err);
+        });
+    });
+}

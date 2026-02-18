@@ -15,6 +15,8 @@
         rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Prism.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -37,6 +39,7 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#components">Components</a></li>
                 <li><a href="#connections">Connections</a></li>
+                <li><a href="#source-code">Source Code</a></li>
                 <li><a href="#tech-stack">Tech Stack</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
@@ -420,6 +423,87 @@
             </div>
         </section>
 
+        <!-- Source Code Section -->
+        <section id="source-code" class="section scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Development</span>
+                    <h2>Source Code</h2>
+                    <div class="header-underline"></div>
+                    <p class="section-subtitle">ESP32 + MPU6050 AirMouse Firmware for Arduino IDE.</p>
+                </div>
+
+                <div class="code-editor-wrap reveal-up">
+                    <div class="code-editor-header">
+                        <div class="editor-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="editor-title">airmouse.ino</div>
+                        <div class="editor-actions">
+                            <button id="copy-code-btn" class="editor-btn" title="Copy Code">
+                                <i data-lucide="copy"></i>
+                                <span>Copy Code</span>
+                            </button>
+                            <a href="airmouse.ino" download class="editor-btn" title="Download .ino">
+                                <i data-lucide="download"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <pre><code class="language-arduino">/*
+  AirMouse | ESP32 + MPU6050 Motion Control
+  A professional implementation for Bluetooth HID mouse control.
+*/
+
+#include <BleMouse.h>
+#include <Adafruit_MPU6050.h>
+#include <Adafruit_Sensor.h>
+#include <Wire.h>
+
+BleMouse bleMouse("AirMouse", "MS-Media", 100);
+Adafruit_MPU6050 mpu;
+
+const int clickPin = 0;
+const float sensitivity = 15.0;
+const float deadzone = 0.05;
+
+void setup() {
+  Serial.begin(115200);
+  if (!mpu.begin()) {
+    while (1) delay(10);
+  }
+  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
+  mpu.setGyroRange(MPU6050_RANGE_500_DEG);
+  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
+  pinMode(clickPin, INPUT_PULLUP);
+  bleMouse.begin();
+}
+
+void loop() {
+  if (bleMouse.isConnected()) {
+    sensors_event_t a, g, temp;
+    mpu.getEvent(&a, &g, &temp);
+
+    float gx = g.gyro.z;
+    float gy = g.gyro.y;
+
+    if (abs(gx) > deadzone || abs(gy) > deadzone) {
+      bleMouse.move((int)(gx * sensitivity), (int)(gy * sensitivity));
+    }
+
+    if (digitalRead(clickPin) == LOW) {
+      if (!bleMouse.isPressed(MOUSE_LEFT)) bleMouse.press(MOUSE_LEFT);
+    } else {
+      if (bleMouse.isPressed(MOUSE_LEFT)) bleMouse.release(MOUSE_LEFT);
+    }
+  }
+  delay(10);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Tech Stack Section -->
         <section id="tech-stack" class="section alt-bg scroll-spy-section">
@@ -745,6 +829,9 @@
     </button>
 
     <script src="script.js"></script>
+    <!-- Prism.js Core & Arduino Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-arduino.min.js"></script>
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
