@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirMouse | Control Your PC with Hand Gestures</title>
+    <meta name="description"
+        content="AirMouse: A revolutionary gesture-controlled interface for your computer. Experience a touchless, intuitive way to interact with your PC.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header id="navbar">
+        <nav class="container">
+            <div class="logo">
+                <span>Air<span>Mouse</span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#components">Components</a></li>
+                <li><a href="#connections">Connections</a></li>
+                <li><a href="#tech-stack">Tech Stack</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <!-- Video Background -->
+            <video class="hero-video" autoplay loop muted playsinline poster="">
+                <source src="assets/clouds.mp4" type="video/mp4">
+            </video>
+            <!-- Dark Overlay -->
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+                <h1 class="reveal-up">AirMouse</h1>
+                <p class="tagline reveal-up" style="transition-delay: 0.1s;">Precision control, wirelessly delivered via
+                    hardware motion sensing.</p>
+                <div class="hero-btns reveal-up" style="transition-delay: 0.2s;">
+                    <a href="#about" class="btn btn-primary">Explore Project</a>
+                    <a href="#faq" class="btn btn-outline">FAQ</a>
+                </div>
+            </div>
+            <a href="#about" class="scroll-indicator">
+                <i data-lucide="chevron-down"></i>
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Overview</span>
+                    <h2>About AirMouse</h2>
+                    <div class="header-underline"></div>
+                </div>
+                <div class="about-content reveal-up">
+                    <p>
+                        AirMouse is a high-performance ICT project utilizing a hardware-based approach to spatial
+                        computing. By integrating an <strong>MPU6050 6-axis motion tracking sensor</strong> with an
+                        <strong>ESP-series microcontroller</strong>, it translates three-dimensional hand tilts and
+                        movements into precise desktop mouse actions. Unlike camera-based systems, AirMouse provides
+                        low-latency, surface-independent control that works in any lighting condition, offering a
+                        professional solution for presentations and ergonomic desktop navigation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="section alt-bg scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Mechanism</span>
+                    <h2>How It Works</h2>
+                    <div class="header-underline"></div>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item reveal-left">
+                        <div class="timeline-icon"><i data-lucide="activity"></i></div>
+                        <div class="timeline-content">
+                            <h3>01. Motion Sensing</h3>
+                            <p>The onboard MPU6050 sensor detects minute changes in gravity and acceleration, capturing
+                                precise 6-axis data from your hand.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal-right">
+                        <div class="timeline-icon"><i data-lucide="microchip"></i></div>
+                        <div class="timeline-content">
+                            <h3>02. Data Processing</h3>
+                            <p>The ESP microcontroller processes high-speed sensor data, filtering out noise to reveal
+                                clean directional vectors for the cursor.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal-left">
+                        <div class="timeline-icon"><i data-lucide="wifi"></i></div>
+                        <div class="timeline-content">
+                            <h3>03. Wireless Transmission</h3>
+                            <p>Movement data is transmitted wirelessly to the PC over Wi-Fi, Bluetooth, or through a
+                                dedicated 2.4GHz USB receiver.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal-right">
+                        <div class="timeline-icon"><i data-lucide="monitor-smartphone"></i></div>
+                        <div class="timeline-content">
+                            <h3>04. Desktop Integration</h3>
+                            <p>The ESP32 sends motion data to the PC via <strong>Bluetooth, Wi-Fi, or USB
+                                    Serial</strong>. A lightweight driver converts sensor values into cursor movement,
+                                while the physical switch triggers click actions — the PC recognises it as a standard
+                                HID mouse input.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Capabilities</span>
+                    <h2>Professional Features</h2>
+                    <div class="header-underline"></div>
+                </div>
+                <div class="grid cards-grid">
+                    <div class="card feature-card reveal-up">
+                        <i data-lucide="move" class="card-icon"></i>
+                        <h3>Hardware Precision</h3>
+                        <p>Dedicated sensors provide sub-degree accuracy for smooth, jitter-free cursor tracking.</p>
+                    </div>
+                    <div class="card feature-card reveal-up">
+                        <i data-lucide="mouse-pointer-2" class="card-icon"></i>
+                        <h3>Intelligent Clicking</h3>
+                        <p>Map physical buttons or specific acceleration thresholds to left, right, and double-click
+                            actions.</p>
+                    </div>
+                    <div class="card feature-card reveal-up">
+                        <i data-lucide="scroll" class="card-icon"></i>
+                        <h3>Vertical Scrolling</h3>
+                        <p>Invert hand orientation or use secondary buttons to navigate long documents with ease.</p>
+                    </div>
+                    <div class="card feature-card reveal-up">
+                        <i data-lucide="waves" class="card-icon"></i>
+                        <h3>Wireless Freedom</h3>
+                        <p>Operate from anywhere in the room. No line-of-sight required, unlike IR or camera systems.
+                        </p>
+                    </div>
+                    <div class="card feature-card reveal-up">
+                        <i data-lucide="monitor-play" class="card-icon"></i>
+                        <h3>Presentation Ready</h3>
+                        <p>Ideal for lecturers and speakers. Control slides and pointers from up to 30 feet away.</p>
+                    </div>
+                    <div class="card feature-card reveal-up">
+                        <i data-lucide="battery-charging" class="card-icon"></i>
+                        <h3>Efficient Power</h3>
+                        <p>Optimized for long-running sessions with ESP-based deep sleep modes and rechargeable modules.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components Section -->
+        <section id="components" class="section components scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Hardware</span>
+                    <h2>Components Used</h2>
+                    <div class="header-underline"></div>
+                    <p class="section-subtitle">Hardware used to build the AirMouse prototype.</p>
+                </div>
+
+                <div class="components-grid">
+                    <div class="card component-card reveal-up">
+                        <i data-lucide="cpu" class="card-icon"></i>
+                        <h3>MPU6050</h3>
+                        <p>6-axis gyro + accelerometer sensor for hardware-based motion tracking.</p>
+                    </div>
+
+                    <div class="card component-card reveal-up">
+                        <i data-lucide="microchip" class="card-icon"></i>
+                        <h3>ESP DevKit V1</h3>
+                        <p>Main microcontroller board for wireless control & high-speed processing.</p>
+                    </div>
+
+                    <div class="card component-card reveal-up">
+                        <i data-lucide="toggle-right" class="card-icon"></i>
+                        <h3>Switch</h3>
+                        <p>Custom switch for tactile click actions and specialized mode control.</p>
+                    </div>
+
+                    <div class="card component-card reveal-up">
+                        <i data-lucide="cable" class="card-icon"></i>
+                        <h3>Jumper Wires</h3>
+                        <p>Reliable connections between sensors, ESP board, and the power block.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Connections Section -->
+        <section id="connections" class="section connections scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Assembly</span>
+                    <h2>Wiring Guide</h2>
+                    <div class="header-underline"></div>
+                    <p class="section-subtitle">Connect the MPU6050 sensor to the ESP32 as shown below.</p>
+                </div>
+
+                <div class="connections-grid reveal-up">
+                    <!-- Wiring Table -->
+                    <div class="table-container">
+                        <table class="wiring-table">
+                            <thead>
+                                <tr>
+                                    <th>MPU6050</th>
+                                    <th>ESP32</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="wire-row" data-wire="vcc">
+                                    <td class="pin-name mpu-pin">VCC</td>
+                                    <td class="pin-name esp-pin">3.3V</td>
+                                    <td class="pin-note warning"><i data-lucide="alert-triangle"></i> Not 5V!</td>
+                                </tr>
+                                <tr class="wire-row" data-wire="gnd">
+                                    <td class="pin-name mpu-pin">GND</td>
+                                    <td class="pin-name esp-pin">GND</td>
+                                    <td class="pin-note">Common ground</td>
+                                </tr>
+                                <tr class="wire-row" data-wire="sda">
+                                    <td class="pin-name mpu-pin">SDA</td>
+                                    <td class="pin-name esp-pin">GPIO 21</td>
+                                    <td class="pin-note">I2C Data</td>
+                                </tr>
+                                <tr class="wire-row" data-wire="scl">
+                                    <td class="pin-name mpu-pin">SCL</td>
+                                    <td class="pin-name esp-pin">GPIO 22</td>
+                                    <td class="pin-note">I2C Clock</td>
+                                </tr>
+                                <tr class="wire-row dim">
+                                    <td class="pin-name mpu-pin">INT</td>
+                                    <td class="pin-name esp-pin">N/C</td>
+                                    <td class="pin-note">(Optional)</td>
+                                </tr>
+                                <tr class="wire-row dim">
+                                    <td class="pin-name mpu-pin">XDA/XCL</td>
+                                    <td class="pin-name esp-pin">N/C</td>
+                                    <td class="pin-note">Ignore</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Self-contained SVG Diagram -->
+                    <div class="diagram-wrap">
+                        <svg id="wiring-svg" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- Glow filters for each wire -->
+                                <filter id="glow-vcc">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                                <filter id="glow-gnd">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                                <filter id="glow-sda">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                                <filter id="glow-scl">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                                <!-- Board shadow -->
+                                <filter id="board-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="rgba(0,0,0,0.25)" />
+                                </filter>
+                            </defs>
+
+                            <!-- ── MPU6050 Board ── -->
+                            <!-- Board body -->
+                            <rect x="20" y="60" width="120" height="220" rx="10" ry="10" fill="#1e293b"
+                                filter="url(#board-shadow)" />
+                            <!-- PCB green accent strip -->
+                            <rect x="20" y="60" width="120" height="8" rx="5" fill="#166534" />
+                            <!-- Chip -->
+                            <rect x="45" y="130" width="70" height="60" rx="6" fill="#0f172a" stroke="#334155"
+                                stroke-width="1.5" />
+                            <text x="80" y="157" text-anchor="middle" font-family="monospace" font-size="9"
+                                fill="#64748b">MPU</text>
+                            <text x="80" y="170" text-anchor="middle" font-family="monospace" font-size="9"
+                                fill="#64748b">6050</text>
+                            <!-- Board label -->
+                            <text x="80" y="48" text-anchor="middle" font-family="'Poppins',sans-serif" font-size="13"
+                                font-weight="700" fill="#1e3a8a">MPU6050</text>
+
+                            <!-- MPU Pins (right edge of board at x=140) -->
+                            <!-- VCC  y=90 -->
+                            <circle id="dot-mpu-vcc" cx="140" cy="90" r="7" fill="#ef4444" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="128" y="87" text-anchor="end" font-family="monospace" font-size="10"
+                                fill="#94a3b8">VCC</text>
+                            <!-- GND  y=130 -->
+                            <circle id="dot-mpu-gnd" cx="140" cy="130" r="7" fill="#475569" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="128" y="127" text-anchor="end" font-family="monospace" font-size="10"
+                                fill="#94a3b8">GND</text>
+                            <!-- SDA  y=200 -->
+                            <circle id="dot-mpu-sda" cx="140" cy="200" r="7" fill="#3b82f6" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="128" y="197" text-anchor="end" font-family="monospace" font-size="10"
+                                fill="#94a3b8">SDA</text>
+                            <!-- SCL  y=240 -->
+                            <circle id="dot-mpu-scl" cx="140" cy="240" r="7" fill="#8b5cf6" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="128" y="237" text-anchor="end" font-family="monospace" font-size="10"
+                                fill="#94a3b8">SCL</text>
+
+                            <!-- ── Wires (cubic bezier, start x=140, end x=420) ── -->
+                            <!-- VCC: y=90 → y=90 (straight) -->
+                            <path id="wire-vcc" class="svg-wire" d="M 147 90 C 280 90, 280 90, 413 90" stroke="#ef4444"
+                                stroke-width="3.5" fill="none" stroke-linecap="round" />
+                            <!-- GND: y=130 → y=130 (straight) -->
+                            <path id="wire-gnd" class="svg-wire" d="M 147 130 C 280 130, 280 130, 413 130"
+                                stroke="#475569" stroke-width="3.5" fill="none" stroke-linecap="round" />
+                            <!-- SDA: y=200 → y=200 -->
+                            <path id="wire-sda" class="svg-wire" d="M 147 200 C 280 200, 280 200, 413 200"
+                                stroke="#3b82f6" stroke-width="3.5" fill="none" stroke-linecap="round" />
+                            <!-- SCL: y=240 → y=240 -->
+                            <path id="wire-scl" class="svg-wire" d="M 147 240 C 280 240, 280 240, 413 240"
+                                stroke="#8b5cf6" stroke-width="3.5" fill="none" stroke-linecap="round" />
+
+                            <!-- ── ESP32 Board ── -->
+                            <rect x="420" y="60" width="120" height="220" rx="10" ry="10" fill="#1e293b"
+                                filter="url(#board-shadow)" />
+                            <rect x="420" y="60" width="120" height="8" rx="5" fill="#1d4ed8" />
+                            <!-- Chip -->
+                            <rect x="445" y="130" width="70" height="60" rx="6" fill="#0f172a" stroke="#334155"
+                                stroke-width="1.5" />
+                            <text x="480" y="157" text-anchor="middle" font-family="monospace" font-size="9"
+                                fill="#64748b">ESP32</text>
+                            <text x="480" y="170" text-anchor="middle" font-family="monospace" font-size="9"
+                                fill="#64748b">DevKit</text>
+                            <!-- Board label -->
+                            <text x="480" y="48" text-anchor="middle" font-family="'Poppins',sans-serif" font-size="13"
+                                font-weight="700" fill="#1e3a8a">ESP32</text>
+
+                            <!-- ESP32 Pins (left edge at x=420) -->
+                            <!-- 3.3V y=90 -->
+                            <circle id="dot-esp-vcc" cx="420" cy="90" r="7" fill="#ef4444" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="432" y="87" text-anchor="start" font-family="monospace" font-size="10"
+                                fill="#94a3b8">3.3V</text>
+                            <!-- GND y=130 -->
+                            <circle id="dot-esp-gnd" cx="420" cy="130" r="7" fill="#475569" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="432" y="127" text-anchor="start" font-family="monospace" font-size="10"
+                                fill="#94a3b8">GND</text>
+                            <!-- GPIO21 y=200 -->
+                            <circle id="dot-esp-sda" cx="420" cy="200" r="7" fill="#3b82f6" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="432" y="197" text-anchor="start" font-family="monospace" font-size="10"
+                                fill="#94a3b8">GPIO21</text>
+                            <!-- GPIO22 y=240 -->
+                            <circle id="dot-esp-scl" cx="420" cy="240" r="7" fill="#8b5cf6" stroke="#fff"
+                                stroke-width="2" />
+                            <text x="432" y="237" text-anchor="start" font-family="monospace" font-size="10"
+                                fill="#94a3b8">GPIO22</text>
+
+                            <!-- Wire legend -->
+                            <circle cx="180" cy="310" r="5" fill="#ef4444" />
+                            <text x="190" y="314" font-family="monospace" font-size="10" fill="#64748b">VCC</text>
+                            <circle cx="230" cy="310" r="5" fill="#475569" />
+                            <text x="240" y="314" font-family="monospace" font-size="10" fill="#64748b">GND</text>
+                            <circle cx="280" cy="310" r="5" fill="#3b82f6" />
+                            <text x="290" y="314" font-family="monospace" font-size="10" fill="#64748b">SDA</text>
+                            <circle cx="330" cy="310" r="5" fill="#8b5cf6" />
+                            <text x="340" y="314" font-family="monospace" font-size="10" fill="#64748b">SCL</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Tech Stack Section -->
+        <section id="tech-stack" class="section alt-bg scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Infrastructure</span>
+                    <h2>Project Tech Stack</h2>
+                    <div class="header-underline"></div>
+                </div>
+                <div class="tech-list reveal-up">
+                    <div class="badge"><i data-lucide="code-2"></i> Arduino IDE</div>
+                    <div class="badge"><i data-lucide="cpu"></i> ESP32 Board Package</div>
+                    <div class="badge"><i data-lucide="bluetooth"></i> BleMouse Library</div>
+                    <div class="badge"><i data-lucide="axis-3d"></i> Adafruit MPU6050</div>
+                    <div class="badge"><i data-lucide="layers"></i> Adafruit Unified Sensor</div>
+                    <div class="badge"><i data-lucide="cable"></i> Wire (I2C)</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Knowledge</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="header-underline"></div>
+                </div>
+                <div class="accordion reveal-up">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            What is an air mouse?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>An air mouse is an input device that lets you control a computer cursor by moving
+                                the device through the air instead of sliding it on a flat surface. This AirMouse
+                                uses an <strong>MPU6050 gyroscope + accelerometer sensor</strong> mounted on an
+                                <strong>ESP32 DevKit V1</strong> to detect 3D hand motion and translate it into
+                                precise cursor movement — no surface, no camera required.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Can I use an air mouse with any type of computer?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Yes. The AirMouse communicates as a standard Bluetooth HID mouse, so it works with
+                                any computer that supports Bluetooth — including Windows, macOS, and Linux — without
+                                installing extra drivers. It can also be connected via USB serial for direct
+                                communication depending on the firmware configuration.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            What kind of batteries do air mice use?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>The AirMouse is powered through the ESP32 DevKit V1's onboard USB port. You can
+                                power it from a USB power bank, a wall adapter, or directly from your PC's USB port.
+                                For a fully wireless build, a small Li-Po battery with a charging module can be
+                                integrated into the enclosure.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Can I program an air mouse for different functions?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Absolutely. Because the firmware runs on the ESP32, you can reprogram it using the
+                                Arduino IDE to adjust sensitivity, dead zones, button mappings, and even add custom
+                                gestures. The MPU6050 data can be filtered and scaled to suit different use cases
+                                — from presentations to media control.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Could an air mouse replace my regular mouse?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>For many everyday tasks — presentations, media playback, casual browsing, and
+                                distance control — the AirMouse works great as a standalone input device. For
+                                pixel-perfect tasks like graphic design or detailed photo editing, a traditional
+                                mouse on a surface still offers higher precision.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Would an air mouse be useful for gaming?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>The AirMouse is not optimised for high-precision competitive gaming. The MPU6050
+                                sensor introduces a small amount of drift over time, and gyroscope-based aiming
+                                is less accurate than an optical gaming mouse on a surface. It can work for casual
+                                or turn-based games, but fast-paced FPS titles are better served by a traditional
+                                gaming mouse.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            What makes an air mouse different from a gyroscopic mouse?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>This AirMouse <em>is</em> a gyroscopic mouse — the terms are often used
+                                interchangeably. It uses the MPU6050's 3-axis gyroscope and 3-axis accelerometer
+                                to detect orientation changes in real time. The ESP32 reads this data over I2C,
+                                applies filtering, and converts the motion into cursor deltas sent wirelessly to
+                                the PC.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Does an air mouse work on any surface?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Yes — that is one of its biggest advantages. Because motion is tracked entirely by
+                                the MPU6050 sensor inside the device, no desk, mousepad, or flat surface is needed.
+                                You can use it while standing at a podium, sitting on a couch, or walking around
+                                a room.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Can I use an air mouse for presentations?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Yes — presentations are one of the best use cases for this AirMouse. You can walk
+                                around the stage, point at the screen, and advance slides without being tethered
+                                to a laptop. The physical button on the device can be mapped to left-click or
+                                slide-advance, giving you full control from a distance.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            How do I connect an air mouse to my device?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>The AirMouse supports multiple connection methods depending on the firmware:
+                                <strong>Bluetooth</strong> (using the BleMouse library — pair it like any BT
+                                mouse), <strong>Wi-Fi</strong> (send UDP packets to a Python listener on your
+                                PC), or <strong>USB Serial</strong> (plug the ESP32 directly into your computer
+                                and use a Python script to read movement data). Bluetooth is the most convenient
+                                for everyday use.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            What should I do if my air mouse isn't working properly?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Start by checking the power supply and USB connection to the ESP32. If using
+                                Bluetooth, try unpairing and re-pairing the device. If the cursor drifts, the
+                                MPU6050 may need a moment to calibrate — keep the device still for 1–2 seconds
+                                after powering on. You can also re-upload the firmware via Arduino IDE to reset
+                                all settings to default.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Can I use an air mouse on different operating systems?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Yes. When connected via Bluetooth HID, the AirMouse is recognised as a standard
+                                mouse by Windows, macOS, Linux, and ChromeOS — no drivers needed. For the USB
+                                Serial mode, a lightweight Python script handles the translation on the host
+                                computer, which also runs cross-platform.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            How accurate is an air mouse compared to a traditional mouse?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>The MPU6050 provides 16-bit resolution gyroscope and accelerometer readings, which
+                                translates to smooth and responsive cursor movement. It is slightly less precise
+                                than a high-DPI optical mouse on a surface due to natural hand tremor and sensor
+                                drift, but for UI navigation, presentations, and media control it is more than
+                                accurate enough.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Can an air mouse interfere with other wireless devices?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>When using Bluetooth, the ESP32 operates on the 2.4 GHz band and uses adaptive
+                                frequency hopping to avoid interference with Wi-Fi routers and other Bluetooth
+                                devices. In practice, interference is rarely an issue in typical home or office
+                                environments. The Wi-Fi mode uses standard 802.11 b/g/n, which also coexists
+                                well with other network devices.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            What's the typical range of an air mouse?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Bluetooth range on the ESP32 is typically <strong>up to 10 metres (30 feet)</strong>
+                                in open space, which is ideal for classroom presentations and conference rooms.
+                                Wi-Fi mode can extend this further depending on your router's coverage. Walls and
+                                obstacles will reduce range, but for most indoor use cases the range is more than
+                                sufficient.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Does an air mouse require a line of sight to work?
+                            <i data-lucide="plus" class="accordion-icon"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <p>No line of sight is required. The AirMouse uses Bluetooth or Wi-Fi radio signals
+                                which pass through walls and obstacles. Motion is tracked entirely by the MPU6050
+                                sensor inside the device itself — there is no external camera or receiver that
+                                needs to "see" your hand. You can even use it with the device in your pocket
+                                (though that's not recommended for precision control).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-more reveal-up">
+                    <p>Have more questions? <a href="#">Contact the project team</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section alt-bg scroll-spy-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">The Team</span>
+                    <h2>Minds Behind the Magic</h2>
+                    <div class="header-underline"></div>
+                    <p class="section-subtitle">The people who built AirMouse from the ground up.</p>
+                </div>
+                <div class="team-grid">
+
+                    <!-- Card 1: Shubham -->
+                    <div class="team-card reveal-up">
+                        <div class="team-avatar-wrap">
+                            <img src="assets/shubham.jpg" alt="Mendpara Shubham" class="team-avatar"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-avatar-fallback" style="display:none;">SM</div>
+                        </div>
+                        <div class="team-info">
+                            <h3>Mendpara Shubham</h3>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Nisarg -->
+                    <div class="team-card reveal-up" style="transition-delay: 0.1s;">
+                        <div class="team-avatar-wrap">
+                            <img src="assets/nisarg.jpg" alt="Nisarg Makwana" class="team-avatar"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-avatar-fallback" style="display:none;">NM</div>
+                        </div>
+                        <div class="team-info">
+                            <h3>Nisarg Makwana</h3>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Hardik -->
+                    <div class="team-card reveal-up" style="transition-delay: 0.2s;">
+                        <div class="team-avatar-wrap">
+                            <img src="assets/hardik.jpg" alt="Hardik Parmar" class="team-avatar"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-avatar-fallback" style="display:none;">HP</div>
+                        </div>
+                        <div class="team-info">
+                            <h3>Hardik Parmar</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i data-lucide="mouse-pointer-2"></i>
+                    <span>Air<span>Mouse</span></span>
+                </div>
+                <p>Redefining human-computer interaction through seamless gesture control.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AirMouse ICT Project | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" class="back-to-top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
