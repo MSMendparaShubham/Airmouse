@@ -766,8 +766,34 @@ img {
 
 
 /* ============================================================
+   AIRMOUSE IN ACTION (DEMO VIDEO)
+   ============================================================ */
+.demo-video-wrap {
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--card-shadow-hover);
+    border: 1px solid var(--border-color);
+    background: #000;
+}
+
+.demo-video {
+    width: 100%;
+    max-height: 75vh;
+    display: block;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+}
+
+
+/* ============================================================
    FAQ ACCORDION
    ============================================================ */
+#faq {
+    padding-top: 2rem;
+}
+
 .accordion {
     max-width: 780px;
     margin: 0 auto;
