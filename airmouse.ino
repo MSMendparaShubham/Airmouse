@@ -4,7 +4,7 @@
 #include <BleMouse.h>
 
 Adafruit_MPU6050 mpu;
-BleMouse bleMouse("ESP32 Air Mouse", "GSN Creation", 100);
+BleMouse bleMouse("ESP32 Air Mouse", "SNH ", 100);
 
 const int leftButtonPin  = 25;  
 const int rightButtonPin = 26;
